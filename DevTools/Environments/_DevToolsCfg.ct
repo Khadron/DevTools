@@ -1,0 +1,25 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<configuration>
+  <configSections>
+    <section name="DbConfigSection" type="System.Configuration.DictionarySectionHandler"/>
+    <section name="GenerateConfiguration" type="System.Configuration.DictionarySectionHandler"/>
+  </configSections>
+
+  <DbConfigSection>
+    <add key="DbType" value=""/>
+    <add key="Server" value=""/>
+    <add key="Port" value="Ignore"/>
+    <add key="DbName" value=""/>
+    <add key="UserName" value=""/>
+    <add key="Password" value=""/>
+    <add key="Schema" value="dbo"/>
+  </DbConfigSection>
+
+  <GenerateConfiguration>
+    <add key="FunctionName" value="KongQiang"/>
+    <add key="OutputPath" value=""/>
+    <add key="CustomTempletePath" value=""/>
+    <add key="PtcFilePath" value=""/>
+  </GenerateConfiguration>
+</configuration>
+<!--程序配置文件模板，VS插件会放在一个权限要求较高的的目录，如果一个用户不是管理员的话那么他就不能操作目录下的文件-->

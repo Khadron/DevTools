@@ -1,0 +1,30 @@
+﻿<#@ template debug="false" hostspecific="false" language="C#" #>
+<#@ assembly name="System"#>
+<#@ assembly name="System.Core" #>
+<#@ import namespace="System" #>
+<#@ output extension=".cs" #>
+
+<#
+    var table=CurrentTemplateInfo.Table;
+	#>
+using System;
+using <#=CurrentTemplateInfo.SolutionName#>.DbEntity;
+
+namespace <#=CurrentTemplateInfo.ProjectName#>.<#=CurrentTemplateInfo.FunctionName#>
+{
+    public class <#=table.TableName#>
+    {
+    <#foreach (var column in table.Columns)
+      {
+		#>
+
+		 /// <summary>
+        /// 
+        /// </summary>
+		[Column("<#=column.ColumnName#>")]
+        public <#= column.CSharpType#><# if(column.CommonType.IsValueType && column.IsNullable){#>?<#}#> <#=column.FieldName#> { get; set; }
+	<#
+	  }#>
+	}
+}
+
