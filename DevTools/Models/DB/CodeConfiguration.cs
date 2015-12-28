@@ -20,7 +20,7 @@ namespace KongQiang.DevTools.Models.DB
     [Serializable]
     public class DbConfiguration
     {
-        public DbProviderType DbProviderType { get; set; }
+        public string DbProviderType { get; set; }
         public string Server { get; set; }
         public string Port { get; set; }
         public string DbName { get; set; }
@@ -37,15 +37,14 @@ namespace KongQiang.DevTools.Models.DB
             set { _schema = value; }
         }
 
-        public DbConfiguration(DbProviderType dbProviderType, string server, string port, string dbName, string userName, string password, string tableName, string schema)
+        public DbConfiguration(DbProviderType dbProviderType, string server, string port, string dbName, string userName, string password, string schema)
         {
-            DbProviderType = dbProviderType;
+            this.DbProviderType = dbProviderType.ToString();
             this.Server = server;
             this.Port = port;
             this.DbName = dbName;
             this.UserName = userName;
             this.Password = password;
-            this.TableName = tableName;
             this.Schema = schema;
         }
 
@@ -137,9 +136,9 @@ namespace KongQiang.DevTools.Models.DB
         /// </summary>
         public string CustomTempletePath { get; set; }
         /// <summary>
-        /// ptc文件路径
+        /// Vspsd文件路径
         /// </summary>
-        public string PtcFilePath { get; set; }
+        public string VspsdFilePath { get; set; }
 
     }
 

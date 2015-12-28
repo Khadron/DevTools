@@ -11,6 +11,7 @@ using KongQiang.DevTools.Utils;
 
 namespace KongQiang.DevTools.CodeGenerator
 {
+    [Obsolete("请使用DbSchemaFactory")]
     internal class DbManager
     {
         private readonly string _dbName;

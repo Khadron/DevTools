@@ -174,6 +174,23 @@ namespace KongQiang.DevTools.Utils
 
         }
 
+        public DataTable GetTableSchema(string tableName)
+        {
+            string selectTableSql = string.Format("SELECT * FROM {0}", tableName);
+
+            using (DbCommand command = CreateDbCommand(selectTableSql, null, CommandType.Text))
+            {
+                using (DbDataAdapter adapter = _providerFactory.CreateDataAdapter())
+                {
+                    adapter.SelectCommand = command;
+                    DataTable metadata = new DataTable();
+                    adapter.FillSchema(metadata, SchemaType.Mapped);
+                    return metadata;
+                }
+            }
+
+        }
+
         /// <summary>
         /// 创建一个DbCommand对象
         /// </summary>

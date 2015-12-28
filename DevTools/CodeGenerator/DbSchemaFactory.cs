@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Security.Cryptography.X509Certificates;
 using System.Text;
@@ -13,11 +14,30 @@ namespace KongQiang.DevTools.CodeGenerator
 {
     internal class DbSchemaFactory
     {
+        public static DbSchema GetDbSchema(DbProviderType type, string connectionString)
+        {
+            DbSchema result;
+            switch (type)
+            {
+                case DbProviderType.SqlServer:
+                    result = new SqlServerSchema(connectionString);
+                    break;
+                case DbProviderType.Oracle:
+                    result = new OracleSchema(connectionString);
+                    break;
+                case DbProviderType.MySql:
+                    result = new MySQLSchema(connectionString);
+                    break;
+                default:
+                    throw new ArgumentException("未知的DbProviderType");
+            }
+
+            return result;
+        }
     }
 
     public class SchemaParamter
     {
-        public DbProviderType DbProviderType { get; set; }
         public string TablesKey { get; set; }
         public string ColumnsKey { get; set; }
         public string PrimaryKey { get; set; }
@@ -41,12 +61,10 @@ namespace KongQiang.DevTools.CodeGenerator
         }
     }
 
-
     public abstract class DbSchema
     {
-
-        private readonly List<string> _tableNames;
-        private readonly Dictionary<string, DbTable> _tableDic;
+        protected readonly List<string> TableNames;
+        protected readonly Dictionary<string, DbTable> TableDic;
         protected DbUtility DbUtility;
 
 
@@ -61,67 +79,69 @@ namespace KongQiang.DevTools.CodeGenerator
         {
             _connectionString = connectionString;
             DbUtility = new DbUtility(connectionString, dbProviderType);
-            _tableDic = new Dictionary<string, DbTable>();
-            _tableNames = new List<string>();
-            InitSchema(connectionString, _tableDic);
+            TableDic = new Dictionary<string, DbTable>();
+            TableNames = new List<string>();
+            InitSchema(connectionString, TableDic);
         }
 
-        public abstract List<string> GetTableNames();
-        public abstract List<DbTable> GetTables();
-        public abstract SchemaParamter GenerateParamter();
+        public abstract List<string> GetTableNames(Func<string, bool> func);
+        public abstract List<DbTable> GetTables(IEnumerable<string> tableNameFilter);
+        protected abstract SchemaParamter GenerateParamter();
 
         protected virtual void InitSchema(string connectionString, Dictionary<string, DbTable> tableDic)
         {
             var schemaParamter = GenerateParamter();
-            var dbUtility = new DbUtility(_connectionString, schemaParamter.DbProviderType);
-            DataTable table = dbUtility.GetSchema(schemaParamter.TablesKey);
-            DataTable columns = dbUtility.GetSchema(schemaParamter.ColumnsKey);
+            DataTable table = DbUtility.GetSchema(schemaParamter.TablesKey);
 
             string tableName;
             foreach (DataRow row in table.Rows)
             {
                 tableName = row[schemaParamter.TableName].ToString();
-                _tableNames.Add(tableName);
+                TableNames.Add(tableName);
+
+                var tableType = row[schemaParamter.TableType].ToString().Contains(TableType.Table.ToString())
+                    ? TableType.Table
+                    : TableType.View;
                 var dbt = new DbTable
                 {
                     TableName = tableName,
-                    TableType = (TableType)Enum.Parse(typeof(TableType), row[schemaParamter.TableType].ToString()),
+                    TableType = tableType,
                     Columns = new List<DbColumn>()
                 };
 
+                DataTable tableSchema = DbUtility.GetTableSchema(tableName);
 
+                var pkns = tableSchema.PrimaryKey.Select(r => r.ColumnName).ToList();
 
-                string primaryKeyColumn = schemaParamter.DbProviderType == DbProviderType.Oracle ? dbUtility.ExecuteScalar(string.Format(schemaParamter.PrimaryKey, tableName)).ToString() : dbUtility.ExecuteScalar(string.Format(schemaParamter.PrimaryKey, _dbName, tableName)).ToString();
-
-                foreach (DataRow cr in columns.Rows)
+                foreach (DataColumn column in tableSchema.Columns)
                 {
-                    if (tableName.Equals(cr[schemaParamter.TableName]))
-                    {
-                        var name = cr[schemaParamter.ColumnName].ToString();
-                        dbt.Columns.Add(new DbColumn
-                        {
-                            ColumnID = Guid.NewGuid().ToString("N"),
-                            ColumnName = name,
-                            ColumnType = cr[schemaParamter.DataType].ToString(),
-                            IsPrimaryKey = primaryKeyColumn == name
-                        });
-                    }
+                    dbt.Columns.Add(new DbColumn
+                     {
+                         ColumnID = Guid.NewGuid().ToString("N"),
+                         ColumnName = column.ColumnName,
+                         ColumnType = column.DataType.FullName,
+                         AllowDbNull = column.AllowDBNull,
+                         IsPrimaryKey = pkns.Contains(column.ColumnName)
+                     });
                 }
 
-                if (_tableDic.ContainsKey(tableName))
+                if (TableDic.ContainsKey(tableName))
                 {
-                    _tableDic[tableName] = dbt;
+                    TableDic[tableName] = dbt;
                 }
                 else
                 {
-                    _tableDic.Add(tableName, dbt);
+                    TableDic.Add(tableName, dbt);
                 }
 
 
             }
         }
 
-
+        public DbTable this[string tableName]
+        {
+            get { return TableDic[tableName]; }
+        }
     }
 
     public class SqlServerSchema : DbSchema
@@ -131,19 +151,79 @@ namespace KongQiang.DevTools.CodeGenerator
         {
         }
 
-        public override List<string> GetTableNames()
+
+        public override List<string> GetTableNames(Func<string, bool> func)
         {
-            throw new NotImplementedException();
+            return func == null ? TableNames : TableNames.Where(func).ToList();
         }
 
-        public override List<DbTable> GetTables()
+        public override List<DbTable> GetTables(IEnumerable<string> tableNameFilter)
         {
-            throw new NotImplementedException();
+            return tableNameFilter == null
+                  ? TableDic.Values.ToList()
+                  : TableDic.Values.Where(r => tableNameFilter.Contains(r.TableName)).ToList();
         }
 
-        public override SchemaParamter GenerateParamter()
+
+        protected override SchemaParamter GenerateParamter()
         {
-            throw new NotImplementedException();
+            return new SchemaParamter
+            {
+                TablesKey = "Tables",
+                TableName = "table_name",
+                TableType = "table_type"
+            };
         }
+
     }
+
+    public class OracleSchema : DbSchema
+    {
+        public OracleSchema(string connectionString)
+            : base(connectionString, DbProviderType.Oracle)
+        {
+        }
+
+        public override List<string> GetTableNames(Func<string, bool> func)
+        {
+            throw new NotImplementedException();
+        }
+
+        public override List<DbTable> GetTables(IEnumerable<string> tableNameFilter)
+        {
+            throw new NotImplementedException();
+        }
+
+        protected override SchemaParamter GenerateParamter()
+        {
+            throw new NotImplementedException();
+        }
+
+    }
+
+    public class MySQLSchema : DbSchema
+    {
+        public MySQLSchema(string connectionString)
+            : base(connectionString, DbProviderType.MySql)
+        {
+        }
+
+        public override List<string> GetTableNames(Func<string, bool> func)
+        {
+            throw new NotImplementedException();
+        }
+
+        public override List<DbTable> GetTables(IEnumerable<string> tableNameFilter)
+        {
+            throw new NotImplementedException();
+        }
+
+        protected override SchemaParamter GenerateParamter()
+        {
+            throw new NotImplementedException();
+        }
+
+
+    }
+
 }

@@ -1,0 +1,12 @@
+D:\Personal\MyPoroject\DevTools\DevTools.Test\bin\Debug\DevTools.Test.dll
+D:\Personal\MyPoroject\DevTools\DevTools.Test\bin\Debug\DevTools.Test.pdb
+D:\Personal\MyPoroject\DevTools\DevTools.Test\obj\Debug\DevTools.Test.dll
+D:\Personal\MyPoroject\DevTools\DevTools.Test\obj\Debug\DevTools.Test.pdb
+D:\Personal\MyPoroject\DevTools\DevTools.Test\bin\Debug\DevTools.Test.dll.config
+D:\Personal\MyPoroject\DevTools\DevTools.Test\bin\Debug\MySql.Data.dll
+C:\Users\Qiang Kong\Documents\DevTools\DevTools.Test\bin\Debug\DevTools.Test.dll.config
+C:\Users\Qiang Kong\Documents\DevTools\DevTools.Test\bin\Debug\DevTools.Test.dll
+C:\Users\Qiang Kong\Documents\DevTools\DevTools.Test\bin\Debug\DevTools.Test.pdb
+C:\Users\Qiang Kong\Documents\DevTools\DevTools.Test\bin\Debug\MySql.Data.dll
+C:\Users\Qiang Kong\Documents\DevTools\DevTools.Test\obj\Debug\DevTools.Test.dll
+C:\Users\Qiang Kong\Documents\DevTools\DevTools.Test\obj\Debug\DevTools.Test.pdb

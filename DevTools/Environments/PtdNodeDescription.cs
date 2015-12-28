@@ -6,9 +6,12 @@ using System.Threading.Tasks;
 
 namespace KongQiang.DevTools.Environments
 {
-    internal class PtcDescription
+    /// <summary>
+    /// 项目结构模板节点描述
+    /// </summary>
+    internal class PtdNodeDescription
     {
-        public const string SollutionNode = "Sollution";
+        public const string SolutionNode = "SolutionNode";
         public const string SolutionNameAttribute = "SolutionName";
 
         public const string ProjectsNode = "Projects";
@@ -18,13 +21,13 @@ namespace KongQiang.DevTools.Environments
         public const string TemplatesNode = "Templates";
         public const string TemplateNode = "Template";
         public const string TemplateNameAttribute = "TemplateName";
-        public const string TargetDirectoryAttribute = "TargetDirectory";
+        public const string DirectoryAttribute = "Directory";
         public const string IsPocoEntityAttribute = "IsPocoEntity";
         public const string FileExtensionAttribute = "FileExtension";
 
         public const string CodeLocationsNode = "CodeLocations";
         public const string CodeLocationNode = "CodeLocation";
-        public const string TargetAttribute = "Target";
+        public const string TargetPathAttribute = "TargetPath";
         public const string LocationAttribute = "Location";
 
     }

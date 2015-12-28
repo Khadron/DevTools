@@ -20,7 +20,7 @@ namespace KongQiang.DevTools.CodeGenerator
     {
         private readonly DTE2 _dte;
         private VSSolution _vsSolution;
-        private readonly DbManager _manager;
+        private readonly DbSchema _schema;
         private readonly Dictionary<string, string> _dicTempletePath;
         private readonly GenerateConfiguration _generateConfiguration;
         private readonly DbConfiguration _dbConfiguration;
@@ -54,10 +54,10 @@ namespace KongQiang.DevTools.CodeGenerator
             }
         }
 
-        public TemplateContext(CodeConfiguration configuration, DbManager manager)
+        public TemplateContext(CodeConfiguration configuration, DbSchema schema)
         {
             _codeConfiguration = configuration;
-            _manager = manager;
+            _schema = schema;
             _dte = _codeConfiguration.Dte;
             _generateConfiguration = _codeConfiguration.GenerateConfiguration;
             _dbConfiguration = _codeConfiguration.DbConfiguration;
@@ -87,13 +87,10 @@ namespace KongQiang.DevTools.CodeGenerator
 
         protected bool PreProcess()
         {
-            string fileName;
-            string ptcPath = string.Empty;
-            StringCollection ttCollection;
-
             try
             {
-
+                StringCollection ttCollection;
+                string ptcPath;
                 if (_codeConfiguration.IsCustomTemplete)
                 {
                     //获取_DevTools目录
@@ -135,7 +132,7 @@ namespace KongQiang.DevTools.CodeGenerator
                 else
                 {
                     //
-                    ptcPath = _codeConfiguration.GenerateConfiguration.PtcFilePath;
+                    ptcPath = _codeConfiguration.GenerateConfiguration.VspsdFilePath;
                     _vsSolution = ResolvePtc(ptcPath);
                     if (_vsSolution == null)
                     {
@@ -149,7 +146,7 @@ namespace KongQiang.DevTools.CodeGenerator
                 string val;
                 foreach (var path in ttCollection)
                 {
-                    fileName = Path.GetFileName(path);
+                    var fileName = Path.GetFileName(path);
                     fileName = fileName.Replace(Path.GetExtension(fileName), "");
 
                     if (!_dicTempletePath.TryGetValue(fileName, out val))
@@ -567,7 +564,7 @@ namespace KongQiang.DevTools.CodeGenerator
                         _generateConfiguration.FunctionName),
                 Table =
                     template.IsPocoTemplate
-                        ? _manager.GetTable(_dbConfiguration.TableName)
+                        ? _schema[_dbConfiguration.TableName]
                         : new DbTable { TableName = _dbConfiguration.TableName }
             };
 

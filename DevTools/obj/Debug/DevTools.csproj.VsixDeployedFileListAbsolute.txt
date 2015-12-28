@@ -1,0 +1,7 @@
+C:\Users\Qiang Kong\AppData\Local\Microsoft\VisualStudio\11.0Exp\Extensions\KongQiang\DevTools\1.0\\DevTools.dll
+C:\Users\Qiang Kong\AppData\Local\Microsoft\VisualStudio\11.0Exp\Extensions\KongQiang\DevTools\1.0\\MySql.Data.dll
+C:\Users\Qiang Kong\AppData\Local\Microsoft\VisualStudio\11.0Exp\Extensions\KongQiang\DevTools\1.0\\DevTools.pkgdef
+C:\Users\Qiang Kong\AppData\Local\Microsoft\VisualStudio\11.0Exp\Extensions\KongQiang\DevTools\1.0\\extension.vsixmanifest
+C:\Users\Qiang Kong\AppData\Local\Microsoft\VisualStudio\11.0Exp\Extensions\KongQiang\DevTools\1.0\Environments\\_DevToolsCfg.ct
+C:\Users\Qiang Kong\AppData\Local\Microsoft\VisualStudio\11.0Exp\Extensions\KongQiang\DevTools\1.0\Templates\T4\\PocoEntity.tt
+C:\Users\Qiang Kong\AppData\Local\Microsoft\VisualStudio\11.0Exp\Extensions\KongQiang\DevTools\1.0\\DevTools.pdb

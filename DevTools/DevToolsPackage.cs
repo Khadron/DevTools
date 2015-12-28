@@ -4,6 +4,8 @@ using System.Globalization;
 using System.Runtime.InteropServices;
 using System.ComponentModel.Design;
 using System.IO;
+using EnvDTE;
+using KongQiang.DevTools.CodeGenerator.Forms;
 using KongQiang.DevTools.Environments;
 using KongQiang.DevTools.Utils.Helper;
 using Microsoft.Win32;
@@ -75,6 +77,8 @@ namespace KongQiang.DevTools
         }
         #endregion
 
+        private FrmCodeGenerator _fcg;
+
         /// <summary>
         /// This function is the callback used to execute a command when the a menu item is clicked.
         /// See the Initialize method to see how the menu item is associated to this function using
@@ -82,28 +86,43 @@ namespace KongQiang.DevTools
         /// </summary>
         private void MenuItemCallback(object sender, EventArgs e)
         {
-            // Show a Message Box to prove we were here
-            IVsUIShell uiShell = (IVsUIShell)GetService(typeof(SVsUIShell));
-            Guid clsid = Guid.Empty;
-            int result;
-            Microsoft.VisualStudio.ErrorHandler.ThrowOnFailure(uiShell.ShowMessageBox(
-                       0,
-                       ref clsid,
-                       "DevTools",
-                       string.Format(CultureInfo.CurrentCulture, "Inside {0}.MenuItemCallback()", this.ToString()),
-                       string.Empty,
-                       0,
-                       OLEMSGBUTTON.OLEMSGBUTTON_OK,
-                       OLEMSGDEFBUTTON.OLEMSGDEFBUTTON_FIRST,
-                       OLEMSGICON.OLEMSGICON_INFO,
-                       0,        // false
-                       out result));
+            if (_fcg != null && !_fcg.IsDisposed)
+            {
+                _fcg.BringToFront();
+                return;
+            }
+
+            var dte = GetService(typeof(DTE)) as DTE;
+            if (dte != null)
+            {
+                if (!dte.Solution.IsOpen)
+                {
+                    IVsUIShell uiShell = (IVsUIShell)GetService(typeof(SVsUIShell));
+                    Guid clsid = Guid.Empty;
+                    int result;
+                    Microsoft.VisualStudio.ErrorHandler.ThrowOnFailure(uiShell.ShowMessageBox(
+                               0,
+                               ref clsid,
+                               "系统提示",
+                               "请先打开一个解决方案",
+                               string.Empty,
+                               0,
+                               OLEMSGBUTTON.OLEMSGBUTTON_OK,
+                               OLEMSGDEFBUTTON.OLEMSGDEFBUTTON_FIRST,
+                               OLEMSGICON.OLEMSGICON_INFO,
+                               0,        // false
+                               out result));
+                    return;
+                }
+
+                _fcg = new FrmCodeGenerator(dte);
+                _fcg.Show();
+            }
         }
 
 
         private static void ConfigFileInit()
         {
-            ConfigHelper.CreateImpl();
 
             var dirPath = DevToolsEnvironment.GetDefaultDirPath();
 

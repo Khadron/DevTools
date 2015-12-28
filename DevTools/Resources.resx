@@ -136,6 +136,6 @@
     <value>生成成功，请使用吧</value>
   </data>
   <data name="OpenFileDialogAlert" xml:space="preserve">
-    <value>项目模版配置文件(*.ptc)|*.ptc|所有文件(*.*)|*.*</value>
+    <value>Visual Studio 项目结构描述文件(*.vspsd)|*.vspsd|所有文件(*.*)|*.*</value>
   </data>
 </root>

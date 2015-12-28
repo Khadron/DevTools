@@ -26,7 +26,7 @@ namespace KongQiang.DevTools.Environments
         public static string MainNamespace = Assembly.GetExecutingAssembly().GetName().Name;
         public static string ModelNamespace = MainNamespace + ".Models";
         public static string PackageDllPath = Assembly.GetExecutingAssembly().Location;
-        public static string PackageFilePath = PackageDllPath.Replace(Path.GetFileName(PackageDllPath), "");
+        public static string PackageFilePath = Path.Combine(PackageDllPath.Replace(Path.GetFileName(PackageDllPath), ""), "Environments");
         public static string ConfigFilePath = Path.Combine(GetDefaultDirPath(), ConfigFileName);
 
         public static string TemplateParameter = string.Format("<#@ assembly name=\"{3}\" #>\n<#@ import namespace=\"{2}\" #>\n<#@ parameter type=\"{0}\" name=\"{1}\" #>\n",

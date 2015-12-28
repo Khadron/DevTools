@@ -79,7 +79,7 @@ namespace KongQiang.DevTools {
         }
         
         /// <summary>
-        ///   查找类似 项目模版配置文件(*.ptc)|*.ptc|所有文件(*.*)|*.* 的本地化字符串。
+        ///   查找类似 Visual Studio 项目结构描述文件(*.vspsd)|*.vspsd|所有文件(*.*)|*.* 的本地化字符串。
         /// </summary>
         internal static string OpenFileDialogAlert {
             get {

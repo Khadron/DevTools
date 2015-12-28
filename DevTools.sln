@@ -5,6 +5,11 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DevTools", "DevTools\DevToo
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DevTools.Test", "DevTools.Test\DevTools.Test.csproj", "{EB4F2984-524C-4CB6-B078-128EE9A8F884}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "VSPSD", "VSPSD", "{F6A6AD62-390F-49B5-817A-2445AEDAB76D}"
+	ProjectSection(SolutionItems) = preProject
+		Test.vspsd = Test.vspsd
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU

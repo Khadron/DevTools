@@ -51,8 +51,8 @@
             this.btnConfirm = new System.Windows.Forms.Button();
             this.cbxOutput = new System.Windows.Forms.ComboBox();
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
-            this.pnlPtc = new System.Windows.Forms.Panel();
-            this.txtPtcPath = new System.Windows.Forms.TextBox();
+            this.pnlVspsd = new System.Windows.Forms.Panel();
+            this.txtVspsdPath = new System.Windows.Forms.TextBox();
             this.btnBrowse = new System.Windows.Forms.Button();
             this.label6 = new System.Windows.Forms.Label();
             this.pnlFolder = new System.Windows.Forms.Panel();
@@ -72,7 +72,7 @@
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.flowLayoutPanel1.SuspendLayout();
-            this.pnlPtc.SuspendLayout();
+            this.pnlVspsd.SuspendLayout();
             this.pnlFolder.SuspendLayout();
             this.pnlPath.SuspendLayout();
             this.SuspendLayout();
@@ -267,7 +267,7 @@
             this.groupBox2.Controls.Add(this.cbxCustom);
             this.groupBox2.Location = new System.Drawing.Point(17, 401);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(501, 199);
+            this.groupBox2.Size = new System.Drawing.Size(517, 199);
             this.groupBox2.TabIndex = 2;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "代码生成配置";
@@ -275,11 +275,11 @@
             // btnConfirm
             // 
             this.btnConfirm.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnConfirm.Location = new System.Drawing.Point(378, 13);
+            this.btnConfirm.Location = new System.Drawing.Point(430, 73);
             this.btnConfirm.Name = "btnConfirm";
-            this.btnConfirm.Size = new System.Drawing.Size(80, 33);
+            this.btnConfirm.Size = new System.Drawing.Size(81, 76);
             this.btnConfirm.TabIndex = 15;
-            this.btnConfirm.Text = "一键生成";
+            this.btnConfirm.Text = "生成代码";
             this.btnConfirm.UseVisualStyleBackColor = true;
             this.btnConfirm.Click += new System.EventHandler(this.btnConfirm_Click);
             // 
@@ -287,7 +287,7 @@
             // 
             this.cbxOutput.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbxOutput.FormattingEnabled = true;
-            this.cbxOutput.Location = new System.Drawing.Point(94, 20);
+            this.cbxOutput.Location = new System.Drawing.Point(106, 20);
             this.cbxOutput.Name = "cbxOutput";
             this.cbxOutput.Size = new System.Drawing.Size(137, 20);
             this.cbxOutput.TabIndex = 9;
@@ -295,35 +295,35 @@
             // 
             // flowLayoutPanel1
             // 
-            this.flowLayoutPanel1.Controls.Add(this.pnlPtc);
+            this.flowLayoutPanel1.Controls.Add(this.pnlVspsd);
             this.flowLayoutPanel1.Controls.Add(this.pnlFolder);
             this.flowLayoutPanel1.Controls.Add(this.pnlPath);
             this.flowLayoutPanel1.Location = new System.Drawing.Point(12, 52);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(435, 136);
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(405, 136);
             this.flowLayoutPanel1.TabIndex = 0;
             // 
-            // pnlPtc
+            // pnlVspsd
             // 
-            this.pnlPtc.Controls.Add(this.txtPtcPath);
-            this.pnlPtc.Controls.Add(this.btnBrowse);
-            this.pnlPtc.Controls.Add(this.label6);
-            this.pnlPtc.Location = new System.Drawing.Point(3, 3);
-            this.pnlPtc.Name = "pnlPtc";
-            this.pnlPtc.Size = new System.Drawing.Size(413, 30);
-            this.pnlPtc.TabIndex = 0;
+            this.pnlVspsd.Controls.Add(this.txtVspsdPath);
+            this.pnlVspsd.Controls.Add(this.btnBrowse);
+            this.pnlVspsd.Controls.Add(this.label6);
+            this.pnlVspsd.Location = new System.Drawing.Point(3, 3);
+            this.pnlVspsd.Name = "pnlPtc";
+            this.pnlVspsd.Size = new System.Drawing.Size(394, 30);
+            this.pnlVspsd.TabIndex = 0;
             // 
             // txtPtcPath
             // 
-            this.txtPtcPath.Location = new System.Drawing.Point(79, 3);
-            this.txtPtcPath.Name = "txtPtcPath";
-            this.txtPtcPath.ReadOnly = true;
-            this.txtPtcPath.Size = new System.Drawing.Size(137, 21);
-            this.txtPtcPath.TabIndex = 11;
+            this.txtVspsdPath.Location = new System.Drawing.Point(91, 4);
+            this.txtVspsdPath.Name = "txtPtcPath";
+            this.txtVspsdPath.ReadOnly = true;
+            this.txtVspsdPath.Size = new System.Drawing.Size(137, 21);
+            this.txtVspsdPath.TabIndex = 11;
             // 
             // btnBrowse
             // 
-            this.btnBrowse.Location = new System.Drawing.Point(222, 3);
+            this.btnBrowse.Location = new System.Drawing.Point(234, 4);
             this.btnBrowse.Name = "btnBrowse";
             this.btnBrowse.Size = new System.Drawing.Size(53, 21);
             this.btnBrowse.TabIndex = 11;
@@ -334,11 +334,11 @@
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(14, 7);
+            this.label6.Location = new System.Drawing.Point(8, 7);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(59, 12);
+            this.label6.Size = new System.Drawing.Size(77, 12);
             this.label6.TabIndex = 0;
-            this.label6.Text = "ptc文件：";
+            this.label6.Text = "vspsd 文件：";
             // 
             // pnlFolder
             // 
@@ -347,13 +347,13 @@
             this.pnlFolder.Controls.Add(this.label11);
             this.pnlFolder.Location = new System.Drawing.Point(3, 39);
             this.pnlFolder.Name = "pnlFolder";
-            this.pnlFolder.Size = new System.Drawing.Size(413, 31);
+            this.pnlFolder.Size = new System.Drawing.Size(394, 31);
             this.pnlFolder.TabIndex = 0;
             this.pnlFolder.Visible = false;
             // 
             // txtTemplate
             // 
-            this.txtTemplate.Location = new System.Drawing.Point(79, 3);
+            this.txtTemplate.Location = new System.Drawing.Point(91, 2);
             this.txtTemplate.Name = "txtTemplate";
             this.txtTemplate.ReadOnly = true;
             this.txtTemplate.Size = new System.Drawing.Size(137, 21);
@@ -361,7 +361,7 @@
             // 
             // btnOutputPath
             // 
-            this.btnOutputPath.Location = new System.Drawing.Point(222, 3);
+            this.btnOutputPath.Location = new System.Drawing.Point(234, 2);
             this.btnOutputPath.Name = "btnOutputPath";
             this.btnOutputPath.Size = new System.Drawing.Size(53, 21);
             this.btnOutputPath.TabIndex = 12;
@@ -372,7 +372,7 @@
             // label11
             // 
             this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(20, 6);
+            this.label11.Location = new System.Drawing.Point(32, 6);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(53, 12);
             this.label11.TabIndex = 0;
@@ -387,7 +387,7 @@
             this.pnlPath.Controls.Add(this.lnkViewFile);
             this.pnlPath.Location = new System.Drawing.Point(3, 76);
             this.pnlPath.Name = "pnlPath";
-            this.pnlPath.Size = new System.Drawing.Size(413, 47);
+            this.pnlPath.Size = new System.Drawing.Size(394, 47);
             this.pnlPath.TabIndex = 0;
             // 
             // label1
@@ -402,7 +402,7 @@
             // 
             // txtOutputPath
             // 
-            this.txtOutputPath.Location = new System.Drawing.Point(79, 0);
+            this.txtOutputPath.Location = new System.Drawing.Point(91, 4);
             this.txtOutputPath.Name = "txtOutputPath";
             this.txtOutputPath.ReadOnly = true;
             this.txtOutputPath.Size = new System.Drawing.Size(137, 21);
@@ -411,7 +411,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(8, 4);
+            this.label2.Location = new System.Drawing.Point(20, 9);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(65, 12);
             this.label2.TabIndex = 0;
@@ -419,7 +419,7 @@
             // 
             // btnFolder
             // 
-            this.btnFolder.Location = new System.Drawing.Point(222, 0);
+            this.btnFolder.Location = new System.Drawing.Point(234, 5);
             this.btnFolder.Name = "btnFolder";
             this.btnFolder.Size = new System.Drawing.Size(53, 21);
             this.btnFolder.TabIndex = 13;
@@ -430,7 +430,7 @@
             // lnkViewFile
             // 
             this.lnkViewFile.AutoSize = true;
-            this.lnkViewFile.Location = new System.Drawing.Point(281, 9);
+            this.lnkViewFile.Location = new System.Drawing.Point(303, 7);
             this.lnkViewFile.Name = "lnkViewFile";
             this.lnkViewFile.Size = new System.Drawing.Size(77, 12);
             this.lnkViewFile.TabIndex = 14;
@@ -441,16 +441,16 @@
             // label12
             // 
             this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(23, 23);
+            this.label12.Location = new System.Drawing.Point(13, 24);
             this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(65, 12);
+            this.label12.Size = new System.Drawing.Size(89, 12);
             this.label12.TabIndex = 0;
-            this.label12.Text = "输出方式：";
+            this.label12.Text = "代码输出方式：";
             // 
             // cbxCustom
             // 
             this.cbxCustom.AutoSize = true;
-            this.cbxCustom.Location = new System.Drawing.Point(241, 22);
+            this.cbxCustom.Location = new System.Drawing.Point(249, 22);
             this.cbxCustom.Name = "cbxCustom";
             this.cbxCustom.Size = new System.Drawing.Size(84, 16);
             this.cbxCustom.TabIndex = 10;
@@ -478,8 +478,8 @@
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
             this.flowLayoutPanel1.ResumeLayout(false);
-            this.pnlPtc.ResumeLayout(false);
-            this.pnlPtc.PerformLayout();
+            this.pnlVspsd.ResumeLayout(false);
+            this.pnlVspsd.PerformLayout();
             this.pnlFolder.ResumeLayout(false);
             this.pnlFolder.PerformLayout();
             this.pnlPath.ResumeLayout(false);
@@ -503,7 +503,7 @@
         private System.Windows.Forms.Label label25;
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.Button btnBrowse;
-        private System.Windows.Forms.TextBox txtPtcPath;
+        private System.Windows.Forms.TextBox txtVspsdPath;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Button btnConfirm;
         private System.Windows.Forms.CheckBox cbxCustom;
@@ -519,7 +519,7 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Button btnFolder;
         private System.Windows.Forms.TextBox txtOutputPath;
-        private System.Windows.Forms.Panel pnlPtc;
+        private System.Windows.Forms.Panel pnlVspsd;
         private System.Windows.Forms.ListBox lstbxTableNames;
         private System.Windows.Forms.Button btnSearch;
         private System.Windows.Forms.TextBox txtSearchText;

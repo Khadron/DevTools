@@ -91,8 +91,6 @@ namespace KongQiang.DevTools.Utils.Helper
         {
             try
             {
-
-
                 var configuration = ConfigurationManager.OpenMappedExeConfiguration(_exeConfigMap, ConfigurationUserLevel.None);
 
                 ConfigurationSection section;
@@ -102,7 +100,6 @@ namespace KongQiang.DevTools.Utils.Helper
                 }
                 else
                 {
-
                     var group = configuration.GetSectionGroup(sectionGroupName);
                     if (group == null)
                     {

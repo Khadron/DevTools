@@ -17,7 +17,7 @@ namespace KongQiang.DevTools.CodeGenerator.Forms
         private bool _hasPath = false;
         private const string IgnoreStr = "Ignore";
         private CodeConfiguration _codeConfiguration;
-        private DbManager _manager;
+        private DbSchema _schema;
 
         public FrmCodeGenerator(DTE dte)
         {
@@ -36,7 +36,7 @@ namespace KongQiang.DevTools.CodeGenerator.Forms
                 return;
             }
             _codeConfiguration = CreateCodeConfiguration();
-            var ntc = new TemplateContext(_codeConfiguration, _manager);
+            var ntc = new TemplateContext(_codeConfiguration, _schema);
             ntc.GenerateCode();
             if (ntc.HasError)
             {
@@ -62,7 +62,7 @@ namespace KongQiang.DevTools.CodeGenerator.Forms
             ofd.ReadOnlyChecked = true;
             if (ofd.ShowDialog() == DialogResult.OK)
             {
-                txtPtcPath.Text = ofd.FileName;
+                txtVspsdPath.Text = ofd.FileName;
             }
         }
 
@@ -82,7 +82,7 @@ namespace KongQiang.DevTools.CodeGenerator.Forms
 
         private void btnOutputPath_Click(object sender, EventArgs e)
         {
-            var fbd = new FolderBrowserDialog { Description = "选择一个含有ptc文件和模板的文件夹", ShowNewFolderButton = true };
+            var fbd = new FolderBrowserDialog { Description = "选择一个含有vspsd文件和模板的文件夹", ShowNewFolderButton = true };
             if (fbd.ShowDialog() == DialogResult.OK)
             {
                 txtTemplate.Text = fbd.SelectedPath;
@@ -164,7 +164,7 @@ namespace KongQiang.DevTools.CodeGenerator.Forms
                 GenerateConfiguration = new GenerateConfiguration()
                 {
                     OutputPath = this.txtOutputPath.Text,
-                    PtcFilePath = this.txtPtcPath.Text,
+                    VspsdFilePath = this.txtVspsdPath.Text,
                     CustomTempletePath = txtTemplate.Text,
                 },
             };
@@ -185,6 +185,7 @@ namespace KongQiang.DevTools.CodeGenerator.Forms
             {
                 this.cbxDbType.Items.Add(type);
             }
+            cbxDbType.SelectedIndex = 0;
 
             //输出方式
             var outputModes = Enum.GetNames(typeof(OutPutMode));
@@ -207,7 +208,7 @@ namespace KongQiang.DevTools.CodeGenerator.Forms
 
             var gSection = ConfigHelper.GetInstance().GetSection<GenerateConfiguration>("GenerateConfiguration");
 
-            this.txtPtcPath.Text = gSection.PtcFilePath;
+            this.txtVspsdPath.Text = gSection.VspsdFilePath;
             this.txtTemplate.Text = gSection.CustomTempletePath;
             this.txtOutputPath.Text = gSection.OutputPath;
         }
@@ -283,12 +284,12 @@ namespace KongQiang.DevTools.CodeGenerator.Forms
         {
             if (this.cbxCustom.Checked)
             {
-                this.pnlPtc.Hide();
+                this.pnlVspsd.Hide();
                 this.pnlFolder.Show();
             }
             else
             {
-                this.pnlPtc.Show();
+                this.pnlVspsd.Show();
                 this.pnlFolder.Hide();
             }
         }
@@ -309,11 +310,10 @@ namespace KongQiang.DevTools.CodeGenerator.Forms
                 var dbProviderType =
                     (DbProviderType)Enum.Parse(typeof(DbProviderType), this.cbxDbType.SelectedItem.ToString());
                 var dbCfg = new DbConfiguration(dbProviderType, this.txtServer.Text,
-                    this.txtPort.Text, this.txtDatabase.Text, this.txtUserName.Text, this.txtPassword.Text,
-                    this.lstbxTableNames.SelectedItem.ToString(), "");
+                    this.txtPort.Text, this.txtDatabase.Text, this.txtUserName.Text, this.txtPassword.Text, "");
 
-                _manager = new DbManager(this.txtDatabase.Text, dbCfg.ToConnectionString(), dbProviderType);
-                var tableNames = _manager.GetTableNames();
+                _schema = DbSchemaFactory.GetDbSchema(dbProviderType, dbCfg.ToConnectionString());
+                var tableNames = _schema.GetTableNames(null);
                 foreach (var name in tableNames)
                 {
                     this.lstbxTableNames.Items.Add(name);
@@ -323,14 +323,17 @@ namespace KongQiang.DevTools.CodeGenerator.Forms
                 {
                     this.lstbxTableNames.SelectedIndex = 0;
                 }
-                this.Cursor = Cursors.Default;
+
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
             }
+            finally
+            {
+                this.Cursor = Cursors.Default;
+            }
         }
-
 
     }
 }

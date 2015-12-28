@@ -71,19 +71,34 @@ namespace KongQiang.DevTools.Models.DB
         public bool IsPrimaryKey { get; set; }
 
         /// <summary>
+        /// 允许为空
+        /// </summary>
+        public bool AllowDbNull { get; set; }
+
+        /// <summary>
         /// 字段名称
         /// </summary>
         public string ColumnName { get; set; }
 
         /// <summary>
-        /// 字段类型
+        /// 字段类型(包含命名空间)
         /// </summary>
         public string ColumnType { get; set; }
 
-        /// <summary>
-        /// 数据库类型对应的C#类型
-        /// </summary>
-        public Type CSharpType { get; set; }
+        public string PropertyName
+        {
+            get
+            {
+                if (string.IsNullOrEmpty(ColumnName))
+                {
+                    return string.Empty;
+                }
+
+                var headChar = ColumnName.Substring(0, 1);
+                return ColumnName.Replace(headChar, headChar.ToUpper());
+
+            }
+        }
 
     }
 
