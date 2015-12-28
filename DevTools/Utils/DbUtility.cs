@@ -144,6 +144,12 @@ namespace KongQiang.DevTools.Utils
             }
         }
 
+        /// <summary>
+        /// 获取数据库架构信息
+        /// </summary>
+        /// <param name="collectionName"></param>
+        /// <param name="restrictionValues"></param>
+        /// <returns></returns>
         public DataTable GetSchema(string collectionName, string[] restrictionValues = null)
         {
             //DbDataAdapter adapter = _providerFactory.CreateDataAdapter();
