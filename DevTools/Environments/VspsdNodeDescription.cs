@@ -9,12 +9,12 @@ namespace KongQiang.DevTools.Environments
     /// <summary>
     /// 项目结构模板节点描述
     /// </summary>
-    internal class PtdNodeDescription
+    internal class VspsdNodeDescription
     {
         public const string SolutionNode = "SolutionNode";
         public const string SolutionNameAttribute = "SolutionName";
 
-        public const string ProjectsNode = "Projects";
+        //public const string ProjectsNode = "Projects";
         public const string ProjectNode = "Project";
         public const string ProjectNameAttribute = "ProjectName";
 

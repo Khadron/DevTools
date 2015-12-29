@@ -10,7 +10,7 @@
 using System;
 using <#=CurrentTemplateInfo.SolutionName#>.DbEntity;
 
-namespace <#=CurrentTemplateInfo.ProjectName#>.<#=CurrentTemplateInfo.FunctionName#>
+namespace <#=CurrentTemplateInfo.DefaultNamespace#>
 {
     public class <#=table.TableName#>
     {
@@ -22,6 +22,7 @@ namespace <#=CurrentTemplateInfo.ProjectName#>.<#=CurrentTemplateInfo.FunctionNa
         /// 
         /// </summary>
         public <#= column.ColumnType#><# if(column.AllowDbNull){#>?<#}#> <#=column.PropertyName#> { get; set; }
+
 	<#
 	  }#>
 	}

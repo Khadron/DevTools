@@ -24,7 +24,7 @@ namespace KongQiang.DevTools.Environments
         public const string ConfigTemplateName = "_DevToolsCfg.ct";
 
         public static string MainNamespace = Assembly.GetExecutingAssembly().GetName().Name;
-        public static string ModelNamespace = MainNamespace + ".Models";
+        public static string ModelNamespace = MainNamespace + ".Models.Templates";
         public static string PackageDllPath = Assembly.GetExecutingAssembly().Location;
         public static string PackageFilePath = Path.Combine(PackageDllPath.Replace(Path.GetFileName(PackageDllPath), ""), "Environments");
         public static string ConfigFilePath = Path.Combine(GetDefaultDirPath(), ConfigFileName);

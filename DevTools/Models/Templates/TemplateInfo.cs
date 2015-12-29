@@ -1,6 +1,7 @@
 ﻿using System;
+using KongQiang.DevTools.Models.DB;
 
-namespace KongQiang.DevTools.Models.DB
+namespace KongQiang.DevTools.Models.Templates
 {
     [Serializable]
     public class TemplateInfo
@@ -11,7 +12,7 @@ namespace KongQiang.DevTools.Models.DB
 
         public string SolutionName { get; set; }
 
-        public string FunctionName { get; set; }
+        //public string FunctionName { get; set; }
 
         public string ClassName { get; set; }
 
@@ -49,7 +50,8 @@ namespace KongQiang.DevTools.Models.DB
         {
             get
             {
-                return string.Format("{0} {1}{2}{3}", DateTime.Now.Ticks, ModuleName, Name, Extension);
+                //return string.Format("{0} {1}{2}{3}", DateTime.Now.Ticks, ModuleName, Name, Extension);
+                return string.Format("{0}_{1}{2}", DateTime.Now.Ticks, Name, Extension);
             }
         }
         /// <summary>
@@ -70,7 +72,7 @@ namespace KongQiang.DevTools.Models.DB
 
         public string SolutionName { get; set; }
 
-        public string ModuleName { get; set; }
+        //public string ModuleName { get; set; }
     }
 
 }

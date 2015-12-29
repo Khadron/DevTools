@@ -38,15 +38,7 @@ namespace KongQiang.DevTools.CodeGenerator.Forms
             _codeConfiguration = CreateCodeConfiguration();
             var ntc = new TemplateContext(_codeConfiguration, _schema);
             ntc.GenerateCode();
-            if (ntc.HasError)
-            {
-                MessageBox.Show(ntc.Message);
-            }
-            else
-            {
-                MessageBox.Show(Resources.SuccessMsg);
-            }
-
+            MessageBox.Show(ntc.HasError ? ntc.Message : Resources.SuccessMsg);
         }
 
         private void btnCancel_Click(object sender, EventArgs e)
@@ -111,17 +103,6 @@ namespace KongQiang.DevTools.CodeGenerator.Forms
             System.Diagnostics.Process.Start("Explorer.exe", this.txtOutputPath.Text);
         }
 
-        private void FrmSetting_FormClosing(object sender, FormClosingEventArgs e)
-        {
-            if (_codeConfiguration != null)
-            {
-                ConfigHelper.GetInstance().ModifySection("DbConfigSection", _codeConfiguration.DbConfiguration);
-                ConfigHelper.GetInstance().ModifySection("GenerateConfiguration", _codeConfiguration.GenerateConfiguration);
-            }
-
-            this.Dispose(true);
-        }
-
         private void btnSearch_Click(object sender, EventArgs e)
         {
             SearchKey(txtSearchText.Text);
@@ -140,6 +121,29 @@ namespace KongQiang.DevTools.CodeGenerator.Forms
             //
         }
 
+        private void FrmCodeGenerator_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            try
+            {
+                if (_codeConfiguration != null)
+                {
+                    ConfigHelper.GetInstance().ModifySection("DbConfigSection", _codeConfiguration.DbConfiguration);
+                    ConfigHelper.GetInstance()
+                        .ModifySection("GenerateConfiguration", _codeConfiguration.GenerateConfiguration);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            finally
+            {
+                this.Dispose(true);
+            }
+
+        }
+
+
         #endregion
 
         #region Private Method
@@ -154,6 +158,7 @@ namespace KongQiang.DevTools.CodeGenerator.Forms
                 HasOutpath = _hasPath,
                 DbConfiguration = new DbConfiguration()
                 {
+                    DbProviderType = this.cbxDbType.SelectedItem.ToString(),
                     Server = this.txtServer.Text,
                     Port = this.txtPort.Text,
                     DbName = this.txtDatabase.Text,
@@ -334,6 +339,7 @@ namespace KongQiang.DevTools.CodeGenerator.Forms
                 this.Cursor = Cursors.Default;
             }
         }
+
 
     }
 }

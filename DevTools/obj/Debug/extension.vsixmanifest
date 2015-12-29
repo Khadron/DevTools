@@ -12,6 +12,6 @@
     <Dependency Id="Microsoft.VisualStudio.MPF.11.0" DisplayName="Visual Studio MPF 11.0" Version="11.0" />
   </Dependencies>
   <Assets>
-    <Asset Type="Microsoft.VisualStudio.VsPackage" Path="DevTools.pkgdef" />
+    <Asset Type="Microsoft.VisualStudio.VsPackage" Path="KongQiang.DevTools.pkgdef" />
   </Assets>
 </PackageManifest>

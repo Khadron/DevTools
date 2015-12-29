@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.Specialized;
+using System.Configuration;
 using System.Diagnostics;
 using System.IO;
 using System.Reflection;
@@ -111,7 +112,7 @@ namespace KongQiang.DevTools.CodeGenerator
 
                     ptcPath = ptc[0];
 
-                    _vsSolution = ResolvePtc(ptcPath);
+                    _vsSolution = ResolveVspsd(ptcPath);
 
                     if (_vsSolution == null)
                     {
@@ -133,7 +134,7 @@ namespace KongQiang.DevTools.CodeGenerator
                 {
                     //
                     ptcPath = _codeConfiguration.GenerateConfiguration.VspsdFilePath;
-                    _vsSolution = ResolvePtc(ptcPath);
+                    _vsSolution = ResolveVspsd(ptcPath);
                     if (_vsSolution == null)
                     {
                         return false;
@@ -204,22 +205,21 @@ namespace KongQiang.DevTools.CodeGenerator
                     ProjectItems pitems = null;
                     EditPoint2 epStart = null;
                     //EditPoint2 epEnd = null;
-                    string fullName, projectPath;
                     foreach (var myProject in _vsSolution.Projects)
                     {
                         foreach (Project project in projects)
                         {
-
                             pitems = project.ProjectItems;
                             if (!myProject.Name.Equals(project.Name))
                                 continue;
 
-                            ResolveCodes(pitems, epStart, myProject.Codes);
+                            if (!ResolveCodes(pitems, epStart, myProject.Codes))
+                                return false;
 
-                            fullName = project.FullName;
-                            projectPath = fullName.Replace(Path.GetFileName(fullName), "");
-
-                            ResolveTemplates(pitems, projectPath, myProject.Templates);
+                            var fullName = project.FullName;
+                            var projectPath = fullName.Replace(Path.GetFileName(fullName), "");
+                            if (!ResolveTemplates(pitems, projectPath, myProject.Templates))
+                                return false;
 
                             project.Save();
                             break;
@@ -256,6 +256,8 @@ namespace KongQiang.DevTools.CodeGenerator
                     item = projectItem;
                     break;
                 }
+
+                item = FindProjectItem(name, projectItem.ProjectItems);
             }
             return item;
         }
@@ -272,20 +274,16 @@ namespace KongQiang.DevTools.CodeGenerator
             _hasError = true;
         }
 
-        private void ResolveTemplates(ProjectItems pitems, string projectPath, IEnumerable<CodeTemplate> templates)
+        private bool ResolveTemplates(ProjectItems pitems, string projectPath, IEnumerable<CodeTemplate> templates)
         {
             string filePath;
             ProjectItem subItem = null;
-            string funcName = _generateConfiguration.FunctionName;
-
             foreach (var template in templates)
             {
                 //subItem = null;
                 string folderName = template.FolderName;
 
-                filePath = string.Format(@"{0}{1}{2}", projectPath, folderName
-                    , (folderName.Equals(funcName) ? "" : "\\" + funcName));
-
+                filePath = Path.Combine(projectPath, folderName);
                 if (!Directory.Exists(filePath))
                 {
                     Directory.CreateDirectory(filePath);
@@ -309,36 +307,32 @@ namespace KongQiang.DevTools.CodeGenerator
                     subItem.ProjectItems.AddFromFile(newFile);
                 }
             }
+            return true;
         }
 
-        private void ResolveCodes(ProjectItems pitems, EditPoint2 epStart, IEnumerable<CodeLocation> codes)
+        private bool ResolveCodes(ProjectItems pitems, EditPoint2 epStart, IEnumerable<CodeLocation> codes)
         {
             foreach (var code in codes)
             {
-                var path = code.Target.Split(new char[] { '/' }, StringSplitOptions.RemoveEmptyEntries);
-
-                if (path.Length > 2)
+                if (string.IsNullOrEmpty(Path.GetExtension(code.Target)))
                 {
-                    RecordLog("插入代码暂时支持二级目录");
-                    return;
+                    RecordError("Vspsd文件解析出错：TargetPath属性值必须要有文件后缀名");
+                    return false;
                 }
 
-                ProjectItem item;
-                string varName;
-                item = FindProjectItem(path[0], pitems);
-                if (path.Length == 2)
-                {
-                    item = FindProjectItem(path[1], item.ProjectItems);
-                    varName = path[1].Replace(Path.GetExtension(path[1]), "");
-                }
-                else
-                {
-                    varName = path[0].Replace(Path.GetExtension(path[0]), "");
-                }
+                var paths = code.Target.Split(new char[] { '/', '\\' }, StringSplitOptions.RemoveEmptyEntries);
+                if (paths.Length == 0)
+                    return false;
 
+                string head = paths[0];
+                string extension = Path.GetExtension(code.Target);
+                string fileName = string.IsNullOrEmpty(Path.GetExtension(head)) ? paths[paths.Length - 1] : head;
+
+                ProjectItem item = FindProjectItem(fileName, pitems);
                 if (item != null)
                 {
                     var fcm = item.FileCodeModel;
+
                     foreach (CodeElement2 elt in fcm.CodeElements)
                     {
                         Debug.WriteLine(elt.Kind);
@@ -359,29 +353,39 @@ namespace KongQiang.DevTools.CodeGenerator
                                     epStart = cc2.StartPoint.CreateEditPoint() as EditPoint2;
                                     epStart.LineDown(1);
                                     InsertCode(code.Content, epStart);
-                                    return;
+                                    break;
                                 case InsertLocation.Constructor:
+
                                     foreach (CodeElement2 ce in cc2.Members)
                                     {
-                                        if (ce.Kind == vsCMElement.vsCMElementFunction && ce.Name.Contains(varName))
+                                        var func2 = (CodeFunction2)ce;
+                                        if (func2.FunctionKind == vsCMFunction.vsCMFunctionConstructor)
                                         {
                                             epStart = ce.EndPoint.CreateEditPoint() as EditPoint2;
-
                                             InsertCode(code.Content, epStart);
                                         }
                                     }
-                                    return;
-                                    ;
+                                    break;
                                 case InsertLocation.Method:
+                                    foreach (CodeElement2 ce in cc2.Members)
+                                    {
+                                        var func2 = (CodeFunction2)ce;
+                                        if (func2.FunctionKind == vsCMFunction.vsCMFunctionFunction)
+                                        {
+                                            epStart = ce.EndPoint.CreateEditPoint() as EditPoint2;
+                                            InsertCode(code.Content, epStart);
+                                        }
+                                    }
                                     break;
                                 default:
-                                    //throw new ConfigurationErrorsException("ptc文件插入代码结点配置错误");
-                                    break;
+                                    throw new ConfigurationException("未知的Location属性");
                             }
                         }
                     }
                 }
             }
+
+            return true;
         }
 
         private void InsertCode(string code, EditPoint2 point)
@@ -392,49 +396,50 @@ namespace KongQiang.DevTools.CodeGenerator
             point.InsertNewLine();
         }
 
-        public VSSolution ResolvePtc(string path)
+        public VSSolution ResolveVspsd(string path)
         {
             try
             {
                 var root = XElement.Load(path);
 
-                var solution = new VSSolution { Name = root.Attribute("Name").Value, Projects = new List<VSProject>() };
+                var solution = new VSSolution { Name = root.Attribute(VspsdNodeDescription.SolutionNameAttribute).Value, Projects = new List<VSProject>() };
 
 
-                foreach (var xElement in root.Elements("Project"))
+                foreach (var xElement in root.Elements(VspsdNodeDescription.ProjectNode))
                 {
                     var project = new VSProject
                     {
-                        Name = xElement.Attribute("Name").Value,
+                        Name = xElement.Attribute(VspsdNodeDescription.ProjectNameAttribute).Value,
                         Templates = new List<CodeTemplate>()
                     };
-                    var templateElement = xElement.Element("Templates");
+                    var templateElement = xElement.Element(VspsdNodeDescription.TemplatesNode);
                     if (templateElement == null)
                     {
-                        throw new NullReferenceException("没有找到Templates结点");
+                        throw new NullReferenceException("没有找到Templates节点");
                     }
 
-                    foreach (var element in templateElement.Elements("Template"))
+                    foreach (var element in templateElement.Elements(VspsdNodeDescription.TemplateNode))
                     {
                         var template = new CodeTemplate
                         {
-                            ModuleName = _generateConfiguration.FunctionName,
+                            //ModuleName = _generateConfiguration.FunctionName,
                             ProjectName = project.Name,
                             SolutionName = solution.Name,
-                            Name = element.Attribute("Name").Value
+                            Name = element.Attribute(VspsdNodeDescription.TemplateNameAttribute).Value
                         };
 
-                        var folder = element.Attribute("Dir");
-                        template.FolderName = folder == null ? _generateConfiguration.FunctionName : folder.Value;
+                        var folder = element.Attribute(VspsdNodeDescription.DirectoryAttribute);
+                        //template.FolderName = folder == null ? _generateConfiguration.FunctionName : folder.Value;
+                        template.FolderName = folder == null ? "NewCode" : folder.Value;
 
-                        var isPoco = element.Attribute("IsPoco");
+                        var isPoco = element.Attribute(VspsdNodeDescription.IsPocoEntityAttribute);
 
                         if (isPoco != null)
                         {
                             template.IsPocoTemplate = Convert.ToBoolean(isPoco.Value);
                         }
 
-                        var extension = element.Attribute("Extension");
+                        var extension = element.Attribute(VspsdNodeDescription.FileExtensionAttribute);
                         if (extension != null)
                         {
                             template.Extension = extension.Value;
@@ -448,17 +453,17 @@ namespace KongQiang.DevTools.CodeGenerator
                     }
 
                     project.Codes = new List<CodeLocation>();
-                    var codes = xElement.Element("InsertCodes");
+                    var codes = xElement.Element(VspsdNodeDescription.CodeLocationsNode);
 
                     if (codes != null)
                     {
-                        foreach (var code in codes.Elements("InsertCode"))
+                        foreach (var code in codes.Elements(VspsdNodeDescription.CodeLocationNode))
                         {
                             project.Codes.Add(new CodeLocation()
                             {
-                                Target = code.Attribute("Target").Value,
+                                Target = code.Attribute(VspsdNodeDescription.TargetPathAttribute).Value,
                                 Location = (InsertLocation)Enum.Parse(typeof(InsertLocation),
-                                    code.Attribute("Location").Value),
+                                    code.Attribute(VspsdNodeDescription.LocationAttribute).Value),
                                 Content = code.Value
                             });
                         }
@@ -557,11 +562,10 @@ namespace KongQiang.DevTools.CodeGenerator
                 EntityName = _dbConfiguration.EntityName,
                 GenerateFileName = template.GenerateFileName,
                 Usings = "",
-                FunctionName = _generateConfiguration.FunctionName,
+                //FunctionName = _generateConfiguration.FunctionName,
                 SolutionName = template.SolutionName,
-                DefaultNamespace =
-                    string.Format("{0}.{1}.{2}", template.ProjectName, template.FolderName,
-                        _generateConfiguration.FunctionName),
+                DefaultNamespace =string.Format("{0}.{1}", template.ProjectName, template.FolderName),
+                    //string.Format("{0}.{1}.{2}", template.ProjectName, template.FolderName,_generateConfiguration.FunctionName),
                 Table =
                     template.IsPocoTemplate
                         ? _schema[_dbConfiguration.TableName]

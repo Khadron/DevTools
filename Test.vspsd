@@ -1,17 +1,15 @@
-<!--Visual Studio Project Structure Description-->
+<!--Visual Studio Project Structure Description (case sensitive)-->
 <Solution SolutionName="DevTools">
-	<Projects>
-		<Project ProjectName="DevTools.Test">
-			<Templates>
-				<Template TemplateName="PocoEntity" Directory="Poco" IsPocoEntity="true" FileExtension=".cs" />
-			</Templates>
-			<CodeLocations>
-				<CodeLocation TargetPath="TargetPath\CodeLoactionTest" location="Constructor" >
-					 <![CDATA[
-					   Debug.Writeline("Hello World");
+  <Project ProjectName="TestDevTools">
+    <Templates>
+      <Template TemplateName="PocoEntity" Directory="Poco" IsPocoEntity="true" FileExtension=".cs" />
+    </Templates>
+    <CodeLocations>
+      <CodeLocation TargetPath="TargetPath\CodeLoactionTest.cs" Location="Constructor" >
+        <![CDATA[
+					   Debug.WriteLine("Hello World");
 					]]>
-				</CodeLocation>
-			</CodeLocations>
-		</Project>
-	</Projects>
+      </CodeLocation>
+    </CodeLocations>
+  </Project>
 </Solution>

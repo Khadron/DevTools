@@ -14,8 +14,6 @@ namespace KongQiang.DevTools.Models.DB
     [Serializable]
     public class DbTable
     {
-        protected const string TABLENAME = "table_name";
-
         /// <summary>
         /// 表名称
         /// </summary>

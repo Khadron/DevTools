@@ -15,7 +15,7 @@
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>KongQiang.DevTools</RootNamespace>
-    <AssemblyName>DevTools</AssemblyName>
+    <AssemblyName>KongQiang.DevTools</AssemblyName>
     <SignAssembly>True</SignAssembly>
     <AssemblyOriginatorKeyFile>Key.snk</AssemblyOriginatorKeyFile>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
@@ -136,12 +136,12 @@
     <Compile Include="CodeGenerator\Forms\FrmCodeGenerator.designer.cs">
       <DependentUpon>FrmCodeGenerator.cs</DependentUpon>
     </Compile>
-    <Compile Include="Environments\PtdNodeDescription.cs" />
+    <Compile Include="Environments\VspsdNodeDescription.cs" />
     <Compile Include="Guids.cs" />
     <Compile Include="Models\DB\DbTable.cs" />
     <Compile Include="Models\Templates\VSSolution.cs" />
     <Compile Include="Models\DB\CodeConfiguration.cs" />
-    <Compile Include="Models\DB\TemplateInfo.cs" />
+    <Compile Include="Models\Templates\TemplateInfo.cs" />
     <Compile Include="Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -181,7 +181,7 @@
     <None Include="source.extension.vsixmanifest">
       <SubType>Designer</SubType>
     </None>
-    <Content Include="Templates\T4\PocoEntity.tt">
+    <Content Include="Templates\Default\PocoEntity.tt">
       <FormatOutput>False</FormatOutput>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <IncludeInVSIX>true</IncludeInVSIX>

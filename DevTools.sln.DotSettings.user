@@ -2,4 +2,4 @@
 	<s:Boolean x:Key="/Default/Housekeeping/UnitTestingMru/UnitTestSessionPersistentData/=A2E8ADB982364F97B332D436F1A68AB0/@KeyIndexDefined">True</s:Boolean>
 	<s:Int64 x:Key="/Default/Housekeeping/UnitTestingMru/UnitTestSessionPersistentData/=A2E8ADB982364F97B332D436F1A68AB0/GroupingIndex/@EntryValue">4</s:Int64>
 	<s:String x:Key="/Default/Housekeeping/UnitTestingMru/UnitTestSessionPersistentData/=A2E8ADB982364F97B332D436F1A68AB0/Name/@EntryValue">SchemaTest</s:String>
-	<s:String x:Key="/Default/Housekeeping/UnitTestingMru/UnitTestSessionPersistentData/=A2E8ADB982364F97B332D436F1A68AB0/XmlSerializedElements/@EntryValue">&lt;Session&gt;&lt;e Id="DevTools.Test.Test.SchemaTest" Project="EB4F2984-524C-4CB6-B078-128EE9A8F884" Provider="MSTest" /&gt;&lt;e Id="DevTools.Test.Test" Project="EB4F2984-524C-4CB6-B078-128EE9A8F884" Provider="MSTest" /&gt;&lt;/Session&gt;</s:String></wpf:ResourceDictionary>
+	<s:String x:Key="/Default/Housekeeping/UnitTestingMru/UnitTestSessionPersistentData/=A2E8ADB982364F97B332D436F1A68AB0/XmlSerializedElements/@EntryValue">&lt;Session&gt;&lt;/Session&gt;</s:String></wpf:ResourceDictionary>

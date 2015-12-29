@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2012
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DevTools", "DevTools\DevTools.csproj", "{9A31B456-CCF8-4E81-B8FE-F6B3DA6B7124}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DevTools.Test", "DevTools.Test\DevTools.Test.csproj", "{EB4F2984-524C-4CB6-B078-128EE9A8F884}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DevTools.UnitTest", "DevTools.Test\DevTools.UnitTest.csproj", "{EB4F2984-524C-4CB6-B078-128EE9A8F884}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "VSPSD", "VSPSD", "{F6A6AD62-390F-49B5-817A-2445AEDAB76D}"
 	ProjectSection(SolutionItems) = preProject

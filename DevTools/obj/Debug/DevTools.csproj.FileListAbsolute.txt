@@ -21,6 +21,10 @@ D:\Personal\MyPoroject\DevTools\DevTools\obj\Debug\KongQiang.DevTools.CodeGenera
 D:\Personal\MyPoroject\DevTools\DevTools\bin\Debug\DevTools.dll.config
 D:\Personal\MyPoroject\DevTools\DevTools\bin\Debug\MySql.Data.dll
 D:\Personal\MyPoroject\DevTools\DevTools\bin\Debug\Templates\T4\PocoEntity.tt
+C:\Users\Qiang Kong\Documents\DevTools\DevTools\bin\Debug\Environments\_DevToolsCfg.ct
+C:\Users\Qiang Kong\Documents\DevTools\DevTools\bin\Debug\Templates\Default\PocoEntity.tt
+C:\Users\Qiang Kong\Documents\DevTools\DevTools\bin\Debug\extension.vsixmanifest
+C:\Users\Qiang Kong\Documents\DevTools\DevTools\bin\Debug\MySql.Data.dll
 C:\Users\Qiang Kong\Documents\DevTools\DevTools\obj\Debug\DevTools.csproj.ResolveComReference.cache
 C:\Users\Qiang Kong\Documents\DevTools\DevTools\obj\Debug\VSPackage.resources
 C:\Users\Qiang Kong\Documents\DevTools\DevTools\obj\Debug\KongQiang.DevTools.CodeGenerator.Forms.FrmCodeGenerator.resources
@@ -31,17 +35,13 @@ C:\Users\Qiang Kong\Documents\DevTools\DevTools\obj\Debug\VSCT.read.1.tlog
 C:\Users\Qiang Kong\Documents\DevTools\DevTools\obj\Debug\VSCT.write.1.tlog
 C:\Users\Qiang Kong\Documents\DevTools\DevTools\obj\Debug\CtoResourceMerger.cache
 C:\Users\Qiang Kong\Documents\DevTools\DevTools\obj\Debug\VSPackage.resources.original
-C:\Users\Qiang Kong\Documents\DevTools\DevTools\bin\Debug\Templates\T4\PocoEntity.tt
-C:\Users\Qiang Kong\Documents\DevTools\DevTools\bin\Debug\DevTools.dll.config
-C:\Users\Qiang Kong\Documents\DevTools\DevTools\bin\Debug\DevTools.dll
-C:\Users\Qiang Kong\Documents\DevTools\DevTools\bin\Debug\DevTools.pdb
-C:\Users\Qiang Kong\Documents\DevTools\DevTools\bin\Debug\DevTools.pkgdef
-C:\Users\Qiang Kong\Documents\DevTools\DevTools\bin\Debug\DevTools.vsix
-C:\Users\Qiang Kong\Documents\DevTools\DevTools\bin\Debug\extension.vsixmanifest
-C:\Users\Qiang Kong\Documents\DevTools\DevTools\bin\Debug\MySql.Data.dll
-C:\Users\Qiang Kong\Documents\DevTools\DevTools\obj\Debug\DevTools.dll
-C:\Users\Qiang Kong\Documents\DevTools\DevTools\obj\Debug\DevTools.pdb
-C:\Users\Qiang Kong\Documents\DevTools\DevTools\obj\Debug\DevTools.pkgdef
-C:\Users\Qiang Kong\Documents\DevTools\DevTools\obj\Debug\DevTools.latest.pkgdef
 C:\Users\Qiang Kong\Documents\DevTools\DevTools\obj\Debug\extension.vsixmanifest
-C:\Users\Qiang Kong\Documents\DevTools\DevTools\bin\Debug\Environments\_DevToolsCfg.ct
+C:\Users\Qiang Kong\Documents\DevTools\DevTools\bin\Debug\KongQiang.DevTools.dll.config
+C:\Users\Qiang Kong\Documents\DevTools\DevTools\bin\Debug\KongQiang.DevTools.dll
+C:\Users\Qiang Kong\Documents\DevTools\DevTools\bin\Debug\KongQiang.DevTools.pdb
+C:\Users\Qiang Kong\Documents\DevTools\DevTools\bin\Debug\KongQiang.DevTools.pkgdef
+C:\Users\Qiang Kong\Documents\DevTools\DevTools\bin\Debug\KongQiang.DevTools.vsix
+C:\Users\Qiang Kong\Documents\DevTools\DevTools\obj\Debug\KongQiang.DevTools.dll
+C:\Users\Qiang Kong\Documents\DevTools\DevTools\obj\Debug\KongQiang.DevTools.pdb
+C:\Users\Qiang Kong\Documents\DevTools\DevTools\obj\Debug\KongQiang.DevTools.pkgdef
+C:\Users\Qiang Kong\Documents\DevTools\DevTools\obj\Debug\KongQiang.DevTools.latest.pkgdef

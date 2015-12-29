@@ -16,7 +16,6 @@
   </DbConfigSection>
 
   <GenerateConfiguration>
-    <add key="FunctionName" value="KongQiang"/>
     <add key="OutputPath" value=""/>
     <add key="CustomTempletePath" value=""/>
     <add key="VspsdFilePath" value=""/>

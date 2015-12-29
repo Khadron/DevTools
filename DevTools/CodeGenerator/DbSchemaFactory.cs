@@ -67,13 +67,11 @@ namespace KongQiang.DevTools.CodeGenerator
         protected readonly Dictionary<string, DbTable> TableDic;
         protected DbUtility DbUtility;
 
-
         private readonly string _connectionString;
         public string ConnectionString
         {
             get { return _connectionString; }
         }
-
 
         protected DbSchema(string connectionString, DbProviderType dbProviderType)
         {
@@ -93,10 +91,9 @@ namespace KongQiang.DevTools.CodeGenerator
             var schemaParamter = GenerateParamter();
             DataTable table = DbUtility.GetSchema(schemaParamter.TablesKey);
 
-            string tableName;
             foreach (DataRow row in table.Rows)
             {
-                tableName = row[schemaParamter.TableName].ToString();
+                var tableName = row[schemaParamter.TableName].ToString();
                 TableNames.Add(tableName);
 
                 var tableType = row[schemaParamter.TableType].ToString().Contains(TableType.Table.ToString())

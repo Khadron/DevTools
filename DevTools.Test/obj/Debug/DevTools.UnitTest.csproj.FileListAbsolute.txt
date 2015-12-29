@@ -1,0 +1,6 @@
+C:\Users\Qiang Kong\Documents\DevTools\DevTools.Test\bin\Debug\DevTools.UnitTest.dll.config
+C:\Users\Qiang Kong\Documents\DevTools\DevTools.Test\bin\Debug\DevTools.UnitTest.dll
+C:\Users\Qiang Kong\Documents\DevTools\DevTools.Test\bin\Debug\DevTools.UnitTest.pdb
+C:\Users\Qiang Kong\Documents\DevTools\DevTools.Test\bin\Debug\MySql.Data.dll
+C:\Users\Qiang Kong\Documents\DevTools\DevTools.Test\obj\Debug\DevTools.UnitTest.dll
+C:\Users\Qiang Kong\Documents\DevTools\DevTools.Test\obj\Debug\DevTools.UnitTest.pdb

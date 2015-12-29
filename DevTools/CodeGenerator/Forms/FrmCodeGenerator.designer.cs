@@ -84,7 +84,7 @@
             this.gboxDB.Controls.Add(this.groupBox1);
             this.gboxDB.Location = new System.Drawing.Point(17, 12);
             this.gboxDB.Name = "gboxDB";
-            this.gboxDB.Size = new System.Drawing.Size(517, 383);
+            this.gboxDB.Size = new System.Drawing.Size(517, 376);
             this.gboxDB.TabIndex = 1;
             this.gboxDB.TabStop = false;
             this.gboxDB.Text = "数据库配置";
@@ -106,7 +106,7 @@
             this.pnlDBConfig.Location = new System.Drawing.Point(6, 20);
             this.pnlDBConfig.Name = "pnlDBConfig";
             this.pnlDBConfig.Size = new System.Drawing.Size(424, 107);
-            this.pnlDBConfig.TabIndex = 18;
+            this.pnlDBConfig.TabIndex = 0;
             // 
             // cbxDbType
             // 
@@ -115,7 +115,7 @@
             this.cbxDbType.Location = new System.Drawing.Point(75, 12);
             this.cbxDbType.Name = "cbxDbType";
             this.cbxDbType.Size = new System.Drawing.Size(137, 20);
-            this.cbxDbType.TabIndex = 15;
+            this.cbxDbType.TabIndex = 1;
             // 
             // label3
             // 
@@ -158,7 +158,8 @@
             this.txtUserName.Location = new System.Drawing.Point(274, 43);
             this.txtUserName.Name = "txtUserName";
             this.txtUserName.Size = new System.Drawing.Size(137, 21);
-            this.txtUserName.TabIndex = 5;
+            this.txtUserName.TabIndex = 4;
+            this.txtUserName.Text = "sa";
             // 
             // label22
             // 
@@ -184,6 +185,7 @@
             this.txtServer.Name = "txtServer";
             this.txtServer.Size = new System.Drawing.Size(137, 21);
             this.txtServer.TabIndex = 3;
+            this.txtServer.Text = "QKONG";
             // 
             // txtPassword
             // 
@@ -191,6 +193,7 @@
             this.txtPassword.Name = "txtPassword";
             this.txtPassword.Size = new System.Drawing.Size(137, 21);
             this.txtPassword.TabIndex = 6;
+            this.txtPassword.Text = "123456";
             this.txtPassword.UseSystemPasswordChar = true;
             // 
             // txtPort
@@ -198,7 +201,7 @@
             this.txtPort.Location = new System.Drawing.Point(76, 75);
             this.txtPort.Name = "txtPort";
             this.txtPort.Size = new System.Drawing.Size(137, 21);
-            this.txtPort.TabIndex = 4;
+            this.txtPort.TabIndex = 5;
             this.txtPort.Text = "可选";
             // 
             // txtDatabase
@@ -206,14 +209,15 @@
             this.txtDatabase.Location = new System.Drawing.Point(274, 17);
             this.txtDatabase.Name = "txtDatabase";
             this.txtDatabase.Size = new System.Drawing.Size(137, 21);
-            this.txtDatabase.TabIndex = 7;
+            this.txtDatabase.TabIndex = 2;
+            this.txtDatabase.Text = "KMRBS";
             // 
             // btnConnection
             // 
             this.btnConnection.Location = new System.Drawing.Point(436, 36);
             this.btnConnection.Name = "btnConnection";
             this.btnConnection.Size = new System.Drawing.Size(75, 76);
-            this.btnConnection.TabIndex = 17;
+            this.btnConnection.TabIndex = 7;
             this.btnConnection.Text = "连接";
             this.btnConnection.UseVisualStyleBackColor = true;
             this.btnConnection.Click += new System.EventHandler(this.btnConnection_Click);
@@ -225,8 +229,8 @@
             this.groupBox1.Controls.Add(this.txtSearchText);
             this.groupBox1.Location = new System.Drawing.Point(6, 133);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(505, 244);
-            this.groupBox1.TabIndex = 14;
+            this.groupBox1.Size = new System.Drawing.Size(505, 237);
+            this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "数据表";
             // 
@@ -244,7 +248,7 @@
             this.btnSearch.Location = new System.Drawing.Point(424, 18);
             this.btnSearch.Name = "btnSearch";
             this.btnSearch.Size = new System.Drawing.Size(75, 23);
-            this.btnSearch.TabIndex = 13;
+            this.btnSearch.TabIndex = 9;
             this.btnSearch.Text = "查找";
             this.btnSearch.UseVisualStyleBackColor = true;
             this.btnSearch.Click += new System.EventHandler(this.btnSearch_Click);
@@ -265,9 +269,9 @@
             this.groupBox2.Controls.Add(this.flowLayoutPanel1);
             this.groupBox2.Controls.Add(this.label12);
             this.groupBox2.Controls.Add(this.cbxCustom);
-            this.groupBox2.Location = new System.Drawing.Point(17, 401);
+            this.groupBox2.Location = new System.Drawing.Point(17, 394);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(517, 199);
+            this.groupBox2.Size = new System.Drawing.Size(501, 190);
             this.groupBox2.TabIndex = 2;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "代码生成配置";
@@ -275,10 +279,10 @@
             // btnConfirm
             // 
             this.btnConfirm.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnConfirm.Location = new System.Drawing.Point(430, 73);
+            this.btnConfirm.Location = new System.Drawing.Point(370, 15);
             this.btnConfirm.Name = "btnConfirm";
-            this.btnConfirm.Size = new System.Drawing.Size(81, 76);
-            this.btnConfirm.TabIndex = 15;
+            this.btnConfirm.Size = new System.Drawing.Size(81, 25);
+            this.btnConfirm.TabIndex = 12;
             this.btnConfirm.Text = "生成代码";
             this.btnConfirm.UseVisualStyleBackColor = true;
             this.btnConfirm.Click += new System.EventHandler(this.btnConfirm_Click);
@@ -287,10 +291,10 @@
             // 
             this.cbxOutput.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbxOutput.FormattingEnabled = true;
-            this.cbxOutput.Location = new System.Drawing.Point(106, 20);
+            this.cbxOutput.Location = new System.Drawing.Point(140, 20);
             this.cbxOutput.Name = "cbxOutput";
             this.cbxOutput.Size = new System.Drawing.Size(137, 20);
-            this.cbxOutput.TabIndex = 9;
+            this.cbxOutput.TabIndex = 10;
             this.cbxOutput.SelectedIndexChanged += new System.EventHandler(this.cbxOutput_SelectedIndexChanged);
             // 
             // flowLayoutPanel1
@@ -298,7 +302,7 @@
             this.flowLayoutPanel1.Controls.Add(this.pnlVspsd);
             this.flowLayoutPanel1.Controls.Add(this.pnlFolder);
             this.flowLayoutPanel1.Controls.Add(this.pnlPath);
-            this.flowLayoutPanel1.Location = new System.Drawing.Point(12, 52);
+            this.flowLayoutPanel1.Location = new System.Drawing.Point(46, 46);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
             this.flowLayoutPanel1.Size = new System.Drawing.Size(405, 136);
             this.flowLayoutPanel1.TabIndex = 0;
@@ -309,24 +313,24 @@
             this.pnlVspsd.Controls.Add(this.btnBrowse);
             this.pnlVspsd.Controls.Add(this.label6);
             this.pnlVspsd.Location = new System.Drawing.Point(3, 3);
-            this.pnlVspsd.Name = "pnlPtc";
+            this.pnlVspsd.Name = "pnlVspsd";
             this.pnlVspsd.Size = new System.Drawing.Size(394, 30);
             this.pnlVspsd.TabIndex = 0;
             // 
-            // txtPtcPath
+            // txtVspsdPath
             // 
             this.txtVspsdPath.Location = new System.Drawing.Point(91, 4);
-            this.txtVspsdPath.Name = "txtPtcPath";
+            this.txtVspsdPath.Name = "txtVspsdPath";
             this.txtVspsdPath.ReadOnly = true;
-            this.txtVspsdPath.Size = new System.Drawing.Size(137, 21);
-            this.txtVspsdPath.TabIndex = 11;
+            this.txtVspsdPath.Size = new System.Drawing.Size(224, 21);
+            this.txtVspsdPath.TabIndex = 0;
             // 
             // btnBrowse
             // 
-            this.btnBrowse.Location = new System.Drawing.Point(234, 4);
+            this.btnBrowse.Location = new System.Drawing.Point(321, 3);
             this.btnBrowse.Name = "btnBrowse";
             this.btnBrowse.Size = new System.Drawing.Size(53, 21);
-            this.btnBrowse.TabIndex = 11;
+            this.btnBrowse.TabIndex = 13;
             this.btnBrowse.Text = "浏览";
             this.btnBrowse.UseVisualStyleBackColor = true;
             this.btnBrowse.Click += new System.EventHandler(this.btnBrowse_Click);
@@ -356,15 +360,15 @@
             this.txtTemplate.Location = new System.Drawing.Point(91, 2);
             this.txtTemplate.Name = "txtTemplate";
             this.txtTemplate.ReadOnly = true;
-            this.txtTemplate.Size = new System.Drawing.Size(137, 21);
-            this.txtTemplate.TabIndex = 12;
+            this.txtTemplate.Size = new System.Drawing.Size(224, 21);
+            this.txtTemplate.TabIndex = 0;
             // 
             // btnOutputPath
             // 
-            this.btnOutputPath.Location = new System.Drawing.Point(234, 2);
+            this.btnOutputPath.Location = new System.Drawing.Point(321, 3);
             this.btnOutputPath.Name = "btnOutputPath";
             this.btnOutputPath.Size = new System.Drawing.Size(53, 21);
-            this.btnOutputPath.TabIndex = 12;
+            this.btnOutputPath.TabIndex = 14;
             this.btnOutputPath.Text = "浏览";
             this.btnOutputPath.UseVisualStyleBackColor = true;
             this.btnOutputPath.Click += new System.EventHandler(this.btnOutputPath_Click);
@@ -394,7 +398,7 @@
             // 
             this.label1.AutoSize = true;
             this.label1.ForeColor = System.Drawing.Color.Red;
-            this.label1.Location = new System.Drawing.Point(79, 29);
+            this.label1.Location = new System.Drawing.Point(89, 28);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(125, 12);
             this.label1.TabIndex = 0;
@@ -405,8 +409,8 @@
             this.txtOutputPath.Location = new System.Drawing.Point(91, 4);
             this.txtOutputPath.Name = "txtOutputPath";
             this.txtOutputPath.ReadOnly = true;
-            this.txtOutputPath.Size = new System.Drawing.Size(137, 21);
-            this.txtOutputPath.TabIndex = 13;
+            this.txtOutputPath.Size = new System.Drawing.Size(224, 21);
+            this.txtOutputPath.TabIndex = 0;
             // 
             // label2
             // 
@@ -419,10 +423,10 @@
             // 
             // btnFolder
             // 
-            this.btnFolder.Location = new System.Drawing.Point(234, 5);
+            this.btnFolder.Location = new System.Drawing.Point(321, 5);
             this.btnFolder.Name = "btnFolder";
             this.btnFolder.Size = new System.Drawing.Size(53, 21);
-            this.btnFolder.TabIndex = 13;
+            this.btnFolder.TabIndex = 15;
             this.btnFolder.Text = "浏览";
             this.btnFolder.UseVisualStyleBackColor = true;
             this.btnFolder.Click += new System.EventHandler(this.btnFolder_Click);
@@ -430,10 +434,10 @@
             // lnkViewFile
             // 
             this.lnkViewFile.AutoSize = true;
-            this.lnkViewFile.Location = new System.Drawing.Point(303, 7);
+            this.lnkViewFile.Location = new System.Drawing.Point(297, 32);
             this.lnkViewFile.Name = "lnkViewFile";
             this.lnkViewFile.Size = new System.Drawing.Size(77, 12);
-            this.lnkViewFile.TabIndex = 14;
+            this.lnkViewFile.TabIndex = 16;
             this.lnkViewFile.TabStop = true;
             this.lnkViewFile.Text = "查看生成文件";
             this.lnkViewFile.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.lnkViewFile_LinkClicked);
@@ -441,7 +445,7 @@
             // label12
             // 
             this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(13, 24);
+            this.label12.Location = new System.Drawing.Point(47, 24);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(89, 12);
             this.label12.TabIndex = 0;
@@ -450,10 +454,10 @@
             // cbxCustom
             // 
             this.cbxCustom.AutoSize = true;
-            this.cbxCustom.Location = new System.Drawing.Point(249, 22);
+            this.cbxCustom.Location = new System.Drawing.Point(283, 22);
             this.cbxCustom.Name = "cbxCustom";
             this.cbxCustom.Size = new System.Drawing.Size(84, 16);
-            this.cbxCustom.TabIndex = 10;
+            this.cbxCustom.TabIndex = 11;
             this.cbxCustom.Text = "自定义模板";
             this.cbxCustom.UseVisualStyleBackColor = true;
             this.cbxCustom.CheckedChanged += new System.EventHandler(this.cbxCustom_CheckedChanged);
@@ -462,14 +466,14 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(546, 609);
+            this.ClientSize = new System.Drawing.Size(536, 596);
             this.Controls.Add(this.gboxDB);
             this.Controls.Add(this.groupBox2);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "FrmCodeGenerator";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FrmSetting_FormClosing);
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FrmCodeGenerator_FormClosing);
             this.gboxDB.ResumeLayout(false);
             this.pnlDBConfig.ResumeLayout(false);
             this.pnlDBConfig.PerformLayout();

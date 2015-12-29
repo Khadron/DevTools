@@ -3,13 +3,13 @@ using System.Data;
 using System.Diagnostics;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace DevTools.Test
+namespace DevTools.UnitTest
 {
     [TestClass]
-    public class Test
+    public class UnitTest
     {
         private DbUtility _dbUtility;
-        public Test()
+        public UnitTest()
         {
             const string conStr = "";
             _dbUtility = new DbUtility(conStr, DbProviderType.SqlServer);
