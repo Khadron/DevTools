@@ -45,3 +45,4 @@ C:\Users\Qiang Kong\Documents\DevTools\DevTools\obj\Debug\KongQiang.DevTools.dll
 C:\Users\Qiang Kong\Documents\DevTools\DevTools\obj\Debug\KongQiang.DevTools.pdb
 C:\Users\Qiang Kong\Documents\DevTools\DevTools\obj\Debug\KongQiang.DevTools.pkgdef
 C:\Users\Qiang Kong\Documents\DevTools\DevTools\obj\Debug\KongQiang.DevTools.latest.pkgdef
+C:\Users\Qiang Kong\Documents\DevTools\DevTools\obj\Debug\DevTools.csprojResolveAssemblyReference.cache

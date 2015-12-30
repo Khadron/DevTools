@@ -103,14 +103,14 @@ namespace KongQiang.DevTools.CodeGenerator
                     }
 
                     string curTempletePath = _generateConfiguration.CustomTempletePath;
-                    var ptc = FileHelper.GetAllFiles(curTempletePath, "*.ptc");
-                    if (ptc.Count == 0)
+                    var vspsd = FileHelper.GetAllFiles(curTempletePath, "*.vspsd");
+                    if (vspsd.Count == 0)
                     {
-                        RecordError("没有找到ptc文件");
+                        RecordError("没有找到vspsd文件");
                         return false;
                     }
 
-                    ptcPath = ptc[0];
+                    ptcPath = vspsd[0];
 
                     _vsSolution = ResolveVspsd(ptcPath);
 
@@ -564,8 +564,8 @@ namespace KongQiang.DevTools.CodeGenerator
                 Usings = "",
                 //FunctionName = _generateConfiguration.FunctionName,
                 SolutionName = template.SolutionName,
-                DefaultNamespace =string.Format("{0}.{1}", template.ProjectName, template.FolderName),
-                    //string.Format("{0}.{1}.{2}", template.ProjectName, template.FolderName,_generateConfiguration.FunctionName),
+                DefaultNamespace = string.Format("{0}.{1}", template.ProjectName, template.FolderName),
+                //string.Format("{0}.{1}.{2}", template.ProjectName, template.FolderName,_generateConfiguration.FunctionName),
                 Table =
                     template.IsPocoTemplate
                         ? _schema[_dbConfiguration.TableName]

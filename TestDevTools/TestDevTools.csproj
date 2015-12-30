@@ -41,19 +41,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Poco\635869990674697061 PocoEntity.cs" />
-    <Compile Include="Poco\635869993877585873 PocoEntity.cs" />
-    <Compile Include="Poco\635869994840168709 PocoEntity.cs" />
-    <Compile Include="Poco\635869996402719799 PocoEntity.cs" />
-    <Compile Include="Poco\635870002916549118 PocoEntity.cs" />
-    <Compile Include="Poco\635870003196685708 PocoEntity.cs" />
-    <Compile Include="Poco\635870013005562076 PocoEntity.cs" />
-    <Compile Include="Poco\635870017621976628 PocoEntity.cs" />
-    <Compile Include="Poco\635870022279447185 PocoEntity.cs" />
-    <Compile Include="Poco\635870025092698559 PocoEntity.cs" />
-    <Compile Include="Poco\635870026560725820 PocoEntity.cs" />
-    <Compile Include="Poco\635870048926888529_PocoEntity.cs" />
-    <Compile Include="Poco\635870053511015207_PocoEntity.cs" />
+    <Compile Include="Poco\635870951615947414_PocoEntity.cs" />
+    <Compile Include="Poco\635870953652821465_PocoEntity.cs" />
+    <Compile Include="Poco\635870964441685535_PocoEntity.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TargetPath\CodeLoactionTest.cs" />

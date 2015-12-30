@@ -4,3 +4,4 @@ C:\Users\Qiang Kong\Documents\DevTools\DevTools.Test\bin\Debug\DevTools.UnitTest
 C:\Users\Qiang Kong\Documents\DevTools\DevTools.Test\bin\Debug\MySql.Data.dll
 C:\Users\Qiang Kong\Documents\DevTools\DevTools.Test\obj\Debug\DevTools.UnitTest.dll
 C:\Users\Qiang Kong\Documents\DevTools\DevTools.Test\obj\Debug\DevTools.UnitTest.pdb
+C:\Users\Qiang Kong\Documents\DevTools\DevTools.Test\obj\Debug\DevTools.UnitTest.csprojResolveAssemblyReference.cache
